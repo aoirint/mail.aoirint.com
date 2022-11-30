@@ -12,7 +12,7 @@ services:
       - "./volumes/dovecot_passdb:/passdb"
       - "./volumes/imap_certs:/imap_certs"
       - "./volumes/pop_certs:/pop_certs"
-      - "var-spool-postfix:/var/spool/postfix"
+      - "./volumes/postfix_spool:/var/spool/postfix"
   postfix:
     image: aoirint/postfix:20221130.1
     ports:
@@ -22,8 +22,5 @@ services:
     volumes:
       - "./volumes/postfix:/postfix"
       - "./volumes/smtp_certs:/smtp_certs"
-      - "var-spool-mail:/var/spool/mail"
-      - "var-spool-postfix:/var/spool/postfix"
-volumes:
-  var-spool-mail:
-  var-spool-postfix:
+      - "./volumes/postfix_mail:/var/spool/mail"
+      - "./volumes/postfix_spool:/var/spool/postfix"
