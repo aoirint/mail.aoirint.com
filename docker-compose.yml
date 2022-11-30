@@ -7,7 +7,7 @@ services:
       - "0.0.0.0:993:993" # imaps
       - "0.0.0.0:995:995" # pop3s
     volumes:
-      - "./volumes/dovecot:/etc/dovecot"
+      - "./volumes/dovecot_config:/etc/dovecot"
       - "./volumes/dovecot_mail:/srv/mail"
       - "./volumes/dovecot_passdb:/passdb"
       - "./volumes/imap_certs:/imap_certs"
@@ -20,7 +20,7 @@ services:
       - "0.0.0.0:465:465" # smtps
       - "0.0.0.0:587:587" # submission
     volumes:
-      - "./volumes/postfix:/postfix"
+      - "./volumes/postfix_config:/postfix"
       - "./volumes/smtp_certs:/smtp_certs"
       - "./volumes/postfix_mail:/var/spool/mail"
       - "./volumes/postfix_spool:/var/spool/postfix"
