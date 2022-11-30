@@ -1,0 +1,29 @@
+services:
+  dovecot:
+    image: dovecot/dovecot:2.3.19.1
+    ports:
+      - "0.0.0.0:110:110" # pop3
+      - "0.0.0.0:143:143" # imap
+      - "0.0.0.0:993:993" # imaps
+      - "0.0.0.0:995:995" # pop3s
+    volumes:
+      - "./volumes/dovecot:/etc/dovecot"
+      - "./volumes/dovecot_mail:/srv/mail"
+      - "./volumes/dovecot_passdb:/passdb"
+      - "./volumes/imap_certs:/imap_certs"
+      - "./volumes/pop_certs:/pop_certs"
+      - "var-spool-postfix:/var/spool/postfix"
+  postfix:
+    image: aoirint/postfix:20221130.1
+    ports:
+      - "0.0.0.0:25:25" # smtp
+      - "0.0.0.0:465:465" # smtps
+      - "0.0.0.0:587:587" # submission
+    volumes:
+      - "./volumes/postfix:/postfix"
+      - "./volumes/smtp_certs:/smtp_certs"
+      - "var-spool-mail:/var/spool/mail"
+      - "var-spool-postfix:/var/spool/postfix"
+volumes:
+  var-spool-mail:
+  var-spool-postfix:
