@@ -1,6 +1,7 @@
 services:
   dovecot:
     image: dovecot/dovecot:2.3.19.1
+    restart: always
     ports:
     #  - "0.0.0.0:110:110" # pop3
     #  - "0.0.0.0:143:143" # imap
@@ -13,8 +14,10 @@ services:
       - "./volumes/pop_certs:/pop_certs"
       - "./volumes/mail:/var/spool/mail"
       - "./volumes/postfix_spool:/var/spool/postfix"
+      - "./volumes/dovecot_logs:/var/log/dovecot"
   postfix:
     image: aoirint/postfix:20221209.2
+    restart: always
     ports:
       - "0.0.0.0:25:25" # smtp
       - "0.0.0.0:465:465" # smtps
@@ -25,6 +28,6 @@ services:
       - "./volumes/smtp_certs:/smtp_certs"
       - "./volumes/mail:/var/spool/mail"
       - "./volumes/postfix_spool:/var/spool/postfix"
+      - "./volumes/postfix_logs:/var/log/postfix"
     depends_on:
       - dovecot
-
