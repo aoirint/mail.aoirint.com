@@ -1,6 +1,6 @@
 services:
   dovecot:
-    image: dovecot/dovecot:2.3.19.1
+    image: dovecot/dovecot:2.3.20
     restart: always
     ports:
     #  - "0.0.0.0:110:110" # pop3
