@@ -1,5 +1,11 @@
 # aoirint_mail_server
 
+## Hash password
+
+```shell
+docker compose exec dovecot doveadm pw -s SHA512-CRYPT
+```
+
 ## Backup
 
 ```shell
