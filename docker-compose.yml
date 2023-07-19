@@ -27,7 +27,7 @@ services:
       - "./volumes/mx01_certs:/mx01_certs"
       - "./volumes/smtp_certs:/smtp_certs"
       - "./volumes/mail:/var/spool/mail"
-      - "./volumes/postfix_spool:/var/spool/postfix"
+      # - "./volumes/postfix_spool:/var/spool/postfix"
       - "./volumes/postfix_logs:/var/log/postfix"
     depends_on:
       - dovecot
