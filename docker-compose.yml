@@ -16,7 +16,7 @@ services:
       - "./volumes/postfix_spool:/var/spool/postfix"
       - "./volumes/dovecot_logs:/var/log/dovecot"
   postfix:
-    image: aoirint/postfix:20230719.4
+    image: aoirint/postfix:20231011.1
     restart: always
     ports:
       - "0.0.0.0:25:25" # smtp
