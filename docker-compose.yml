@@ -15,6 +15,7 @@ services:
       - "./volumes/mail:/var/spool/mail"
       - "./volumes/postfix_spool:/var/spool/postfix"
       - "./volumes/dovecot_logs:/var/log/dovecot"
+
   postfix:
     image: aoirint/postfix:20231011.1
     restart: always
@@ -31,3 +32,13 @@ services:
       - "./volumes/postfix_logs:/var/log/postfix"
     depends_on:
       - dovecot
+      - opendkim
+
+  opendkim:
+    image: docker.aoirint.com/aoirint/opendkim:0.1.0
+    restart: always
+    volumes:
+      - "./volumes/opendkim_config/opendkim.conf:/etc/opendkim.conf"
+      - "./volumes/opendkim_config/KeyTable:/etc/opendkim/KeyTable"
+      - "./volumes/opendkim_config/SigningTable:/etc/opendkim/SigningTable"
+      - "./volumes/opendkim_dkimkeys:/etc/dkimkeys"
